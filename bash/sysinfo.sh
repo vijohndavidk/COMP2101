@@ -2,8 +2,8 @@
 # My script - sysinfo.sh
 # This script displays the system information
 
-echo $ ./sysinfo.sh 
-echo FQDN: myvm.home.vijohn
+$ ./sysinfo.sh 
+FQDN: myvm.home.vijohn
 echo Host Information:
 hostnamectl
 df
