@@ -8,7 +8,7 @@ narad:x:500:500::/home?narad:/bin/bash
 #vi /opt/scripts/system-info.sh
 
 #!/bin/bash
-echo Report for myvm
+echo "Report for myvm"
 echo -e "===================="
 echo -e "-------------------------------System Information----------------------------"
 echo -e "Hostname:\t\t"`hostname`
@@ -28,7 +28,7 @@ echo -e "Active User:\t\t"`w | cut -d ' ' -f1 | grep -v USER | xargs -n1`
 echo -e "System Main IP:\t\t"`hostname -I`
 echo IP Address :
 ip route
-echo Root file system status :
+echo Root file system free space :
 df -hT /home
 echo ""
 echo -e "-------------------------------CPU/Memory Usage------------------------------"
