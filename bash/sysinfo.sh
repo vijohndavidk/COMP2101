@@ -3,11 +3,12 @@
 # This script displays the system information
 
 
+echo FQDN: 
 hostname -f
+echo Host Information:
 hostnamectl
+echo IP Address :
 hostname -I
-echo -e "-------------------------------Disk Usage >80%-------------------------------"
-df -Ph | sed s/%//g | awk '{ if($5 > 80) print $0;}'
-echo ""
-
+echo Root file system status :
+df -hT /home
 
