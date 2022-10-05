@@ -1,8 +1,3 @@
-#!/bin/bash
-# My script - sysinfo.sh
-# This script displays the system information
-
-
 $ cat [OPTION] [FILE]...
 
 # cat/etc/passwd
@@ -12,8 +7,13 @@ narad:x:500:500::/home?narad:/bin/bash
 
 #vi /opt/scripts/system-info.sh
 
+#!/bin/bash
+echo Report for myvm
+echo -e "===================="
 echo -e "-------------------------------System Information----------------------------"
 echo -e "Hostname:\t\t"`hostname`
+echo FQDN: 
+hostname -f
 echo -e "uptime:\t\t\t"`uptime | awk '{print $3,$4}' | sed 's/,//'`
 echo -e "Manufacturer:\t\t"`cat /sys/class/dmi/id/chassis_vendor`
 echo -e "Product Name:\t\t"`cat /sys/class/dmi/id/product_name`
@@ -26,6 +26,10 @@ echo -e "Architecture:\t\t"`arch`
 echo -e "Processor Name:\t\t"`awk -F':' '/^model name/ {print $2}' /proc/cpuinfo | uniq | sed -e 's/^[ \t]*//'`
 echo -e "Active User:\t\t"`w | cut -d ' ' -f1 | grep -v USER | xargs -n1`
 echo -e "System Main IP:\t\t"`hostname -I`
+echo IP Address :
+ip route
+echo Root file system status :
+df -hT /home
 echo ""
 echo -e "-------------------------------CPU/Memory Usage------------------------------"
 echo -e "Memory Usage:\t"`free | awk '/Mem/{printf("%.2f%"), $3/$2*100}'`
@@ -35,33 +39,4 @@ echo ""
 echo -e "-------------------------------Disk Usage >80%-------------------------------"
 df -Ph | sed s/%//g | awk '{ if($5 > 80) print $0;}'
 echo ""
-
-echo -e "-------------------------------For WWN Details-------------------------------"
-vserver=$(lscpu | grep Hypervisor | wc -l)
-if [ $vserver -gt 0 ]
-then
-echo "$(hostname) is a VM"
-else
-cat /sys/class/fc_host/host?/port_name
-fi
-echo ""
-
-echo -e "-------------------------------Oracle DB Instances---------------------------"
-if id oracle >/dev/null 2>&1; then
-/bin/ps -ef|grep pmon
-then
-else
-echo "oracle user does not exist on $(hostname)"
-fi
-echo ""
-
-if (( $(cat /etc/*-release | grep -w "Oracle|Red Hat|CentOS|Fedora" | wc -l) > 0 ))
-then
-echo -e "-------------------------------Package Updates-------------------------------"
-yum updateinfo summary | grep 'Security|Bugfix|Enhancement'
-echo -e "-----------------------------------------------------------------------------"
-else
-echo -e "-------------------------------Package Updates-------------------------------"
-cat /var/lib/update-notifier/updates-available
-echo -e "-----------------------------------------------------------------------------"
-fi 
+echo -e "===================="
