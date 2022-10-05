@@ -3,7 +3,7 @@ $ cat [OPTION] [FILE]...
 # cat/etc/passwd
  }root:x:0:0:root:bin/bash
    bin:x:1:1:bin:bin:/sbin?nologin
-narad:x:500:500::/home?narad:/bin/bash
+vijohn:x:500:500::/home?vijohn:/bin/bash
 
 #vi /opt/scripts/system-info.sh
 
