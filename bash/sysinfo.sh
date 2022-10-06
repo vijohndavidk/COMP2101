@@ -1,9 +1,4 @@
-$ cat [OPTION] [FILE]...
-
-# cat/etc/passwd
- }root:x:0:0:root:bin/bash
-   bin:x:1:1:bin:bin:/sbin?nologin
-vijohn:x:500:500::/home?vijohn:/bin/bash
+$ cat [OPTION] [FILE]
 
 #vi /opt/scripts/system-info.sh
 
