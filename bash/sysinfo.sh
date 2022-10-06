@@ -1,4 +1,8 @@
 #!/bin/bash
+# My script - sysinfo.sh
+# This script displays the system information
+
+
 echo "Report for myvm"
 echo -e "===================="
 echo -e "-------------------------------System Information----------------------------"
