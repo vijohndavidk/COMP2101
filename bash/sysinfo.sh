@@ -1,7 +1,3 @@
-$ cat [OPTION] [FILE]
-
-#vi /opt/scripts/system-info.sh
-
 #!/bin/bash
 echo "Report for myvm"
 echo -e "===================="
