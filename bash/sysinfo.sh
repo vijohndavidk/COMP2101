@@ -3,18 +3,7 @@
 # This script displays the system information
 
 
-<<<<<<< HEAD
-echo FQDN: 
-hostname -f
-echo Host Information:
-hostnamectl
-echo IP Address :
-hostname -I
-echo Root file system status :
-df -hT /home
 
-
-=======
 echo "Report for myvm"
 echo -e "===================="
 echo -e "-------------------------------System Information----------------------------"
@@ -37,4 +26,4 @@ echo -e "-------------------------------Disk Usage >80%-------------------------
 df -Ph | sed s/%//g | awk '{ if($5 > 80) print $0;}'
 echo ""
 echo -e "===================="
->>>>>>> bf069a4e48433a9ed6e52d363a66980ae62e5fe9
+
