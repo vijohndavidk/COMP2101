@@ -25,22 +25,75 @@
 # command line processing
 ################
 
+#echo "The 0 variable has '$(basename $0)'"
+
+hostnames=()
 while [ $# -gt 0 ]; do
-#case statement to process the command line
+#	echo "There are $# things on that command line"
+#	echo "The 1 variable has '$1'"
 	case "$1" in
-		-h | --help )
-			echo "Usage: $(basename $0) [-v | --verbose] [interfacename]"
-			exit
+		-h )
+			echo Usage: $($basename $0) [-h] [-v] [-if filename] [-of filename] configfurationfile hostname...
 			;;
-		-v | --verbose )
-			verbose=yes
+		-v )
+			verbose="yes"
 			;;
-		*)
-			myinterfacename=$2
+		-if )
+			if [ -z "$2" ];  then
+				echo "-if parameter is missing a filename to use" >&2
+				exit 1
+			fi
+			if [ -n "$if" ]; then
+				echo "Too many -if parameters on the command line" >&2
+				exit 1
+			fi
+			if="$2"
+			shift
+			;;
+		-of )
+			if [ -z "$2" ];  then
+				echo "-of parameter is missing a filename to use" >&2
+				exit 1
+			fi
+			if [ -n "$of" ]; then
+				echo "Too many -of parameters on the command line" >&2
+				exit 1
+			fi
+			of="$2"
+			shift
+			;;
+		* )
+			if [ -n "$configfilename" ]; then
+				hostnames+=("$1")
+			else
+				configfilename="$1"
+			fi
+				
 			;;
 	esac
 	shift
 done
+# done command line processing
+
+
+
+if [ "$verbose" = "yes" ]; then
+	cat <<EOF
+Verbose mode is on, verbal diarrhea begins...
+Setting configfilename to '$configfilename'
+Setting input file to '$if'
+Setting output file to '$of'
+We have ${#hostnames[@]} host names to work on, they are:
+EOF
+	# produce the output list of hostnames
+	for (( index=0 ; index < ${#hostnames[@]} ; index++ )); do
+		echo "Hostname $index is '${hostnames[$index]}'"
+	done
+fi
+#cat <<EOF 
+#The variable verbose is set to '$verbose'
+#The config filename is '$configfilename'
+#EOF
 
 ################
 # Data Gathering
