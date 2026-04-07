@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Scam Alert Hub</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Scam Alert Hub</h1>
+      <p>Report scams and search community reports to stay safe.</p>
+    </header>
+
+    <main>
+      <section class="card">
+        <h2>Submit a Scam Report</h2>
+        <form id="report-form">
+          <div class="grid">
+            <label>
+              Your name*
+              <input type="text" name="reporter_name" required />
+            </label>
+            <label>
+              Contact info (email/phone)
+              <input type="text" name="contact_info" />
+            </label>
+            <label>
+              Scam type*
+              <input type="text" name="scam_type" placeholder="e.g. Phishing, Job Scam" required />
+            </label>
+            <label>
+              Incident date
+              <input type="date" name="incident_date" />
+            </label>
+            <label>
+              Location
+              <input type="text" name="location" placeholder="City / Country" />
+            </label>
+            <label>
+              Amount lost (USD)
+              <input type="number" name="amount_lost" min="0" step="0.01" />
+            </label>
+          </div>
+          <label>
+            Full description*
+            <textarea name="description" rows="5" required placeholder="Describe what happened, scammer tactics, and warning signs..."></textarea>
+          </label>
+          <button type="submit">Submit Report</button>
+          <p id="form-message"></p>
+        </form>
+      </section>
+
+      <section class="card">
+        <h2>Search Scam Reports</h2>
+        <form id="search-form" class="search-row">
+          <input type="text" id="search-input" placeholder="Search by keyword (type, location, description...)" />
+          <button type="submit">Search</button>
+          <button type="button" id="clear-search" class="secondary">Clear</button>
+        </form>
+        <p id="search-meta"></p>
+        <div id="results" class="results"></div>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>

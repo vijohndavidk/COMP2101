@@ -1,0 +1,10 @@
+{
+  "name": "scam-reporting-portal",
+  "version": "1.0.0",
+  "description": "Full-stack scam reporting website with searchable reports",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  }
+}
